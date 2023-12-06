@@ -1,0 +1,21 @@
+name: Daily Workflow
+on:
+  schedule:
+    - cron: '0 0 * * *'  # This schedule runs the workflow every day at midnight (UTC)
+
+jobs:
+  run-every-24-hours:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Append timestamp to file
+      run: |
+        # Add the current date and time to a file
+        echo "$(date '+%Y-%m-%d %H:%M:%S')" >> timestamp.txt
+        # Optionally, you can display the content of the file
+        cat timestamp.txt
+
+    # Add more steps as needed for your workflow
